@@ -3,15 +3,22 @@
 load('testSet.txt');
 
 %% kmeans initialization
-init(:,:,1) = [-4.822 4.607; -0.7188 -2.493; 4.377 4.864];
-init(:,:,2) = [-3.594 2.857; -0.6595 3.111; 3.998 2.519];
-init(:,:,3) = [-0.7188 -2.493; 0.8458 -3.59; 1.149 3.345];
-init(:,:,4) = [-3.276 1.577; 3.275 2.958; 4.377 4.864];
+% uncomment the following lines to run with K=3 (for given initial centers)
+% init(:,:,1) = [-4.822 4.607; -0.7188 -2.493; 4.377 4.864];
+% init(:,:,2) = [-3.594 2.857; -0.6595 3.111; 3.998 2.519];
+% init(:,:,3) = [-0.7188 -2.493; 0.8458 -3.59; 1.149 3.345];
+% init(:,:,4) = [-3.276 1.577; 3.275 2.958; 4.377 4.864];
+% 
+% K = size(init,1);
+% 
+% pick = 4;
+% centers = init(:,:,pick);
 
-K = size(init,1);
-
-pick = 4;
-centers = init(:,:,pick);
+% for K=2,4, pick some samples randomly as the intial centers
+Nsample = size(testSet,1);
+K = 4;
+i = randsample(Nsample,K)';
+centers = testSet(i,:);
 
 categories = zeros(size(testSet,1),1);
 
